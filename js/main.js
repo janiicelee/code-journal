@@ -20,7 +20,8 @@ function updateEntry(event) {
   var entryObj = {
     title: $form.elements.title.value,
     photoUrl: $form.elements.photoUrl.value,
-    notes: $form.elements.notes.value
+    notes: $form.elements.notes.value,
+    nextEntryId: data.nextEntryId
   };
   return entryObj;
 }
