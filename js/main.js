@@ -10,3 +10,17 @@ function updateImagePreview(event) {
 }
 
 $button.addEventListener('click', updateImagePreview);
+
+var $form = document.querySelector('form');
+
+$form.addEventListener('submit', updateEntry);
+
+function updateEntry(event) {
+  event.preventDefault();
+  var entryObj = {
+    title: $form.elements.title.value,
+    photoUrl: $form.elements.photoUrl.value,
+    notes: $form.elements.notes.value
+  };
+  return entryObj;
+}
