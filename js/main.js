@@ -26,4 +26,5 @@ function updateEntry(event) {
   data.nextEntryId++;
   data.entries.unshift(entryObj);
   $image.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $form.reset();
 }
