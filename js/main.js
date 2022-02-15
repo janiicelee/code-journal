@@ -23,5 +23,6 @@ function updateEntry(event) {
     notes: $form.elements.notes.value,
     nextEntryId: data.nextEntryId
   };
+  data.nextEntryId++;
   return entryObj;
 }
