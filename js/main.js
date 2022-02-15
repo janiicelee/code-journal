@@ -24,5 +24,6 @@ function updateEntry(event) {
     nextEntryId: data.nextEntryId
   };
   data.nextEntryId++;
+  data.entries.unshift(entryObj);
   return entryObj;
 }
