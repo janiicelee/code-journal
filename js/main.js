@@ -25,5 +25,5 @@ function updateEntry(event) {
   };
   data.nextEntryId++;
   data.entries.unshift(entryObj);
-  return entryObj;
+  $image.setAttribute('src', 'images/placeholder-image-square.jpg');
 }
