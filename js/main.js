@@ -27,3 +27,40 @@ function updateEntry(event) {
 }
 
 $form.addEventListener('submit', updateEntry);
+
+function createEntryListItem(data) {
+
+  var liElement = document.createElement('li');
+  liElement.setAttribute('class', 'row');
+
+  var imageElement = document.createElement('img');
+  imageElement.setAttribute('class', 'column-half');
+  imageElement.setAttribute('src', data.photourl);
+
+  liElement.appendChild(imageElement);
+
+  var divElement = document.createElement('div');
+  divElement.setAttribute('class', 'column-half');
+
+  liElement.appendChild(divElement);
+
+  var h1Element = document.createElement('h1');
+  h1Element.textContent = data.title;
+
+  var pElement = document.createElement('p');
+  pElement.textContent = data.notes;
+
+  divElement.appendChild(h1Element);
+  divElement.appendChild(pElement);
+
+  return liElement;
+}
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  var ulElement = document.querySelector('ul');
+
+  for (var i = 0; i < data.entries.length; i++) {
+    var result = createEntryListItem(data.entries[i]);
+    ulElement.appendChild(result);
+  }
+});
