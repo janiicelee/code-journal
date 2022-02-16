@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background-color: #f0f0f0;
 }
 
 .row {
@@ -52,4 +53,5 @@ label {
   color: white;
   background-color: #562a81;
   border-radius: 5px;
+  padding: 10px;
 }
