@@ -15,15 +15,12 @@ header {
 
 img {
   border-radius: 5px;
-
-  /* margin: 5%; */
+  width: 100%;
 }
 
 label {
   display: block;
   font-weight: bold;
-
-  /* margin: 10px 0; */
 }
 
 #title {
@@ -61,4 +58,17 @@ label {
   background-color: #562a81;
   border-radius: 5px;
   padding: 5px 15px;
+}
+
+input:focus,
+textarea:focus {
+  outline-color: #562a81;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul > li {
+  width: 100%;
 }
