@@ -1,25 +1,22 @@
 /* global data */
 /* exported data */
 
-var $button = document.querySelector('.button');
 var $image = document.querySelector('#image');
-var $photoUrl = document.querySelector('#photo-url');
+var $photoUrl = document.querySelector('#photourl');
 
 function updateImagePreview(event) {
   $image.setAttribute('src', $photoUrl.value);
 }
 
-$button.addEventListener('click', updateImagePreview);
+$photoUrl.addEventListener('input', updateImagePreview);
 
 var $form = document.querySelector('form');
-
-$form.addEventListener('submit', updateEntry);
 
 function updateEntry(event) {
   event.preventDefault();
   var entryObj = {
     title: $form.elements.title.value,
-    photoUrl: $form.elements.photoUrl.value,
+    photourl: $form.elements.photourl.value,
     notes: $form.elements.notes.value,
     nextEntryId: data.nextEntryId
   };
@@ -28,3 +25,5 @@ function updateEntry(event) {
   $image.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
 }
+
+$form.addEventListener('submit', updateEntry);
