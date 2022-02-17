@@ -21,14 +21,16 @@
         <div class="column-full">
           <div class="row">
             <div class="form-tab active" data-view="entry-form">Code Journal</div>
-            <div class="entry-tab" data-view="entries">Entries</div>
+            <div class="entry-tab" data-view="entries">
+              <a href="#">Entries</a>
+            </div>
             </nav>
           </div>
         </div>
       </div>
     </header>
     <main>
-      <div class="container">
+      <div class="container" data-view="entry-form">
         <div class="row">
           <div class="column-full">
             <h1>New Entry</h1>
@@ -69,8 +71,12 @@
       </form>
     </main>
   </div>
-  <div data-view="entries">
+  <div class="" data-view="entries">
     <div class="container">
+      <div class="row space-between align-items new-button">
+        <h1>Entries</h1>
+        <button class="button" type="submit"><a href="#">NEW</a></button>
+      </div>
       <div class="entry-list">
         <ul>
         </ul>
