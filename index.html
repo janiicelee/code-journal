@@ -15,22 +15,22 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <div data-view="entry-form">
-    <header>
-      <div class="container">
-        <div class="column-full">
-          <div class="row">
-            <div class="form-tab active" data-view="entry-form">Code Journal</div>
-            <div class="entry-tab" data-view="entries">
-              <a href="#">Entries</a>
-            </div>
-            </nav>
+  <header>
+    <div class="container tab-container">
+      <div class="column-full">
+        <div class="row">
+          <div class="tab form-tab active" data-view="entry-form">Code Journal</div>
+          <div class="tab entry-tab" data-view="entries">
+            <a href="#">Entries</a>
           </div>
+          </nav>
         </div>
       </div>
-    </header>
-    <main>
-      <div class="container" data-view="entry-form">
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <div class="view entry-form" data-view="entry-form">
         <div class="row">
           <div class="column-full">
             <h1>New Entry</h1>
@@ -42,36 +42,28 @@
               <img class="resize" id="image" src="images/placeholder-image-square.jpg" alt="placeholder">
             </div>
             <div class="column-half">
-              <div data-view="entry-form">
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" required>
-              </div>
-              <div data-view="entry-form">
-                <label for="photourl">Photo URL</label>
-                <input type="text" name="photourl" id="photourl" required>
-              </div>
+              <label for="title">Title</label>
+              <input type="text" name="title" id="title" required>
+              <label for="photourl">Photo URL</label>
+              <input type="text" name="photourl" id="photourl" required>
             </div>
           </div>
           <div class="row">
             <div class="column-full">
-              <div data-view="entry-form">
-                <label for="notes">Notes</label>
-                <textarea rows="5" cols="30" class="notes" name="notes" id="notes" required></textarea>
-              </div>
+              <label for="notes">Notes</label>
+              <textarea rows="5" cols="30" class="notes" name="notes" id="notes" required></textarea>
             </div>
           </div>
-          <div data-view="entry-form">
-            <div class="row">
-              <div class="column-full right-button">
-                <input class="button" type="submit" value="SAVE">
-              </div>
+          <div class="row">
+            <div class="column-full right-button">
+              <input class="button" type="submit" value="SAVE">
             </div>
           </div>
       </div>
-      </form>
-    </main>
-  </div>
-  <div class="" data-view="entries">
+    </div>
+    </form>
+  </main>
+  <div class="view entries hidden" data-view="entries">
     <div class="container">
       <div class="row space-between align-items new-button">
         <h1>Entries</h1>

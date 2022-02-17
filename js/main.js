@@ -64,3 +64,32 @@ document.addEventListener('DOMContentLoaded', function (event) {
     ulElement.appendChild(result);
   }
 });
+
+var $newbutton = document.querySelector('.new-button');
+var $entryTab = document.querySelector('.entry-tab');
+var $entryForm = document.querySelector('.entry-form');
+var $entries = document.querySelector('.entries');
+var $formTab = document.querySelector('.form-tab');
+
+$newbutton.addEventListener('click', function (event) {
+  if ($entryForm !== '') {
+    $entries.className = 'entries hidden';
+    $entryForm.className = 'entry-form';
+  }
+});
+
+$entryTab.addEventListener('click', function (event) {
+  if ($entries !== '') {
+    $entryForm.className = 'entry-form hidden';
+    $entries.className = 'entries';
+  } else {
+    return 'No entries have been recorded';
+  }
+});
+
+$formTab.addEventListener('click', function (event) {
+  if ($entryForm !== '') {
+    $entries.className = 'entries hidden';
+    $entryForm.className = 'entry-form';
+  }
+});
