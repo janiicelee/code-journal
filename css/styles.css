@@ -69,6 +69,10 @@ ul {
   list-style-type: none;
 }
 
+li {
+  margin: 10px;
+}
+
 .form-tab {
   padding: 0.75rem 0;
   cursor: pointer;

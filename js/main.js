@@ -20,10 +20,21 @@ function updateEntry(event) {
     notes: $form.elements.notes.value,
     nextEntryId: data.nextEntryId
   };
+  // add new entry to the data model
   data.nextEntryId++;
   data.entries.unshift(entryObj);
   $image.setAttribute('src', 'images/placeholder-image-square.jpg');
   $form.reset();
+
+  // switches to the list view
+  $entries.className = 'view entries';
+  $entryForm.className = 'view entry-form hidden';
+  data.view = 'entries';
+
+  // inserts new domtree on the top of list
+  var $ulELement = document.querySelector('ul');
+  var newEntry = createEntryListItem(entryObj);
+  $ulELement.prepend(newEntry);
 }
 
 $form.addEventListener('submit', updateEntry);
@@ -75,6 +86,7 @@ $newbutton.addEventListener('click', function (event) {
   if ($entryForm !== '') {
     $entries.className = 'entries hidden';
     $entryForm.className = 'entry-form';
+    data.view = 'entry-form';
   }
 });
 
@@ -82,6 +94,7 @@ $entryTab.addEventListener('click', function (event) {
   if ($entries !== '') {
     $entryForm.className = 'entry-form hidden';
     $entries.className = 'entries';
+    data.view = 'entries';
   } else {
     return 'No entries have been recorded';
   }
@@ -91,5 +104,17 @@ $formTab.addEventListener('click', function (event) {
   if ($entryForm !== '') {
     $entries.className = 'entries hidden';
     $entryForm.className = 'entry-form';
+    data.view = 'entry-form';
   }
 });
+
+// this is needed to refresh the page
+if (data.view === 'entry-form') {
+  $entries.className = 'view entries hidden';
+  $entryForm.className = 'view entry-form';
+  data.view = 'entry-form';
+} else {
+  $entryForm.className = 'view entry-form hidden';
+  $entries.className = 'view entries';
+  data.view = 'entries';
+}
