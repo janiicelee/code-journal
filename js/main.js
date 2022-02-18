@@ -43,6 +43,7 @@ function createEntryListItem(data) {
 
   var liElement = document.createElement('li');
   liElement.setAttribute('class', 'row');
+  liElement.setAttribute('data-entry-id', data.nextEntryId - 1);
 
   var imageElement = document.createElement('img');
   imageElement.setAttribute('class', 'column-half');
