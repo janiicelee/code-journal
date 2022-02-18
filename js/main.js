@@ -55,13 +55,22 @@ function createEntryListItem(data) {
 
   liElement.appendChild(divElement);
 
+  var titleDivElement = document.createElement('div');
+  titleDivElement.setAttribute('class', 'row space-between');
+
+  divElement.appendChild(titleDivElement);
+
   var h1Element = document.createElement('h1');
   h1Element.textContent = data.title;
+
+  var editElement = document.createElement('i');
+  editElement.setAttribute('class', 'fa-solid fa-pen edit-icon display align-items');
 
   var pElement = document.createElement('p');
   pElement.textContent = data.notes;
 
-  divElement.appendChild(h1Element);
+  titleDivElement.appendChild(h1Element);
+  titleDivElement.appendChild(editElement);
   divElement.appendChild(pElement);
 
   return liElement;
