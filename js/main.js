@@ -77,8 +77,9 @@ function createEntryListItem(data) {
   return liElement;
 }
 
+var ulElement = document.querySelector('ul');
+
 document.addEventListener('DOMContentLoaded', function (event) {
-  var ulElement = document.querySelector('ul');
 
   for (var i = 0; i < data.entries.length; i++) {
     var result = createEntryListItem(data.entries[i]);
@@ -128,3 +129,13 @@ if (data.view === 'entry-form') {
   $entries.className = 'view entries';
   data.view = 'entries';
 }
+
+// Listen for clicks on the parent element of all rendered entries
+ulElement.addEventListener('click', function (event) {
+  // console.log('ok');
+  if (event.target && event.target.matches('i')) {
+    $entries.className = 'view entries hidden';
+    $entryForm.className = 'view entry-form';
+    data.view = 'entry-form';
+  }
+});
