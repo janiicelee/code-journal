@@ -50,11 +50,6 @@ function updateEntry(event) {
   $entries.className = 'view entries';
   $entryForm.className = 'view entry-form hidden';
   data.view = 'entries';
-
-  // inserts new domtree on the top of list
-  // var $ulELement = document.querySelector('ul');
-  // var newEntry = createEntryListItem(entryObj);
-  // $ulELement.prepend(newEntry);
 }
 
 $form.addEventListener('submit', updateEntry);
@@ -144,16 +139,18 @@ if (data.view === 'entry-form') {
   $entries.className = 'view entries';
   data.view = 'entries';
 }
+
 var $liClosest = null;
+
 // Listen for clicks on the parent element of all rendered entries
 ulElement.addEventListener('click', function (event) {
 
   var $h1Element = document.querySelector('h1');
 
   if (event.target && event.target.matches('I')) {
-    $liClosest = event.target.closest('li'); // get the i's parent li
-    var $entryId = $liClosest.getAttribute('data-entry-id'); // get the data-entry-id of the entry you want to edit
-    $entryId = JSON.parse($entryId); // parse to make into number data type
+    $liClosest = event.target.closest('li');
+    var $entryId = $liClosest.getAttribute('data-entry-id');
+    $entryId = JSON.parse($entryId);
     for (var i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entryId === $entryId) {
         data.editing = data.entries[i];
