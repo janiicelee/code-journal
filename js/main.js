@@ -18,8 +18,9 @@ function updateEntry(event) {
     title: $form.elements.title.value,
     photourl: $form.elements.photourl.value,
     notes: $form.elements.notes.value,
-    nextEntryId: data.nextEntryId
+    entryId: data.nextEntryId
   };
+
   // add new entry to the data model
   data.nextEntryId++;
   data.entries.unshift(entryObj);
@@ -40,25 +41,21 @@ function updateEntry(event) {
 $form.addEventListener('submit', updateEntry);
 
 function createEntryListItem(data) {
-
   var liElement = document.createElement('li');
   liElement.setAttribute('class', 'row');
-  liElement.setAttribute('data-entry-id', data.nextEntryId - 1);
+  liElement.setAttribute('data-entry-id', data.entryId);
 
   var imageElement = document.createElement('img');
   imageElement.setAttribute('class', 'column-half');
   imageElement.setAttribute('src', data.photourl);
-
   liElement.appendChild(imageElement);
 
   var divElement = document.createElement('div');
   divElement.setAttribute('class', 'column-half');
-
   liElement.appendChild(divElement);
 
   var titleDivElement = document.createElement('div');
   titleDivElement.setAttribute('class', 'row space-between');
-
   divElement.appendChild(titleDivElement);
 
   var h1Element = document.createElement('h1');
@@ -68,8 +65,8 @@ function createEntryListItem(data) {
   editElement.setAttribute('class', 'fa-solid fa-pen edit-icon display align-items');
 
   var pElement = document.createElement('p');
-  pElement.textContent = data.notes;
 
+  pElement.textContent = data.notes;
   titleDivElement.appendChild(h1Element);
   titleDivElement.appendChild(editElement);
   divElement.appendChild(pElement);
@@ -80,7 +77,6 @@ function createEntryListItem(data) {
 var ulElement = document.querySelector('ul');
 
 document.addEventListener('DOMContentLoaded', function (event) {
-
   for (var i = 0; i < data.entries.length; i++) {
     var result = createEntryListItem(data.entries[i]);
     ulElement.appendChild(result);
@@ -132,10 +128,28 @@ if (data.view === 'entry-form') {
 
 // Listen for clicks on the parent element of all rendered entries
 ulElement.addEventListener('click', function (event) {
-  // console.log('ok');
-  if (event.target && event.target.matches('i')) {
+  var $liClosest = null;
+  var $h1Element = document.querySelector('h1');
+
+  if (event.target && event.target.matches('I')) {
+    $liClosest = event.target.closest('li'); // get the i's parent li
+    var $entryId = $liClosest.getAttribute('data-entry-id'); // get the data-entry-id of the entry you want to edit
+    $entryId = JSON.parse($entryId); // parse to make into number data type
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryId === $entryId) {
+        data.editing = data.entries[i];
+      }
+    }
+
+    // populate the input fields with object stored in data.editing
+    $form.elements.title.value = data.editing.title;
+    $form.elements.photourl.value = data.editing.photourl;
+    $form.elements.notes.value = data.editing.notes;
+    $image.setAttribute('src', data.editing.photourl);
+
     $entries.className = 'view entries hidden';
     $entryForm.className = 'view entry-form';
+    $h1Element.textContent = 'Edit Entry';
     data.view = 'entry-form';
   }
 });

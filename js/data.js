@@ -1,5 +1,4 @@
 /* exported data */
-
 var data = {
   view: 'entry-form',
   entries: [],
@@ -8,7 +7,6 @@ var data = {
 };
 
 var previousData = localStorage.getItem('code-journal');
-
 if (previousData !== null) {
   data = JSON.parse(previousData);
 }
