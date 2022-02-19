@@ -11,31 +11,50 @@ function updateImagePreview(event) {
 $photoUrl.addEventListener('input', updateImagePreview);
 
 var $form = document.querySelector('form');
+var $ulELement = document.querySelector('ul');
 
 function updateEntry(event) {
   event.preventDefault();
-  var entryObj = {
-    title: $form.elements.title.value,
-    photourl: $form.elements.photourl.value,
-    notes: $form.elements.notes.value,
-    entryId: data.nextEntryId
-  };
+  var entryObj = {};
+  if (data.editing === null) {
+    entryObj = {
+      title: $form.elements.title.value,
+      photourl: $form.elements.photourl.value,
+      notes: $form.elements.notes.value,
+      entryId: data.nextEntryId
+    };
 
-  // add new entry to the data model
-  data.nextEntryId++;
-  data.entries.unshift(entryObj);
-  $image.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $form.reset();
+    // add new entry to the data model
+    data.nextEntryId++;
+    data.entries.unshift(entryObj);
+    $image.setAttribute('src', 'images/placeholder-image-square.jpg');
+    $ulELement.prepend(createEntryListItem(entryObj));
+    $form.reset();
+  } else if (data.editing !== null) {
+    entryObj.title = $form.elements.title.value;
+    entryObj.photourl = $form.elements.photourl.value;
+    entryObj.notes = $form.elements.notes.value;
+    entryObj.entryId = data.editing.entryId;
 
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.entries[i].entryid === entryObj.entryId) {
+        data.entries[i] = entryObj;
+      }
+    }
+    data.editing = null;
+    $image.setAttribute('src', 'images/placeholder-image-square.jpg');
+    $liClosest.replaceWith(createEntryListItem(entryObj));
+    $form.reset();
+  }
   // switches to the list view
   $entries.className = 'view entries';
   $entryForm.className = 'view entry-form hidden';
   data.view = 'entries';
 
   // inserts new domtree on the top of list
-  var $ulELement = document.querySelector('ul');
-  var newEntry = createEntryListItem(entryObj);
-  $ulELement.prepend(newEntry);
+  // var $ulELement = document.querySelector('ul');
+  // var newEntry = createEntryListItem(entryObj);
+  // $ulELement.prepend(newEntry);
 }
 
 $form.addEventListener('submit', updateEntry);
@@ -125,10 +144,10 @@ if (data.view === 'entry-form') {
   $entries.className = 'view entries';
   data.view = 'entries';
 }
-
+var $liClosest = null;
 // Listen for clicks on the parent element of all rendered entries
 ulElement.addEventListener('click', function (event) {
-  var $liClosest = null;
+
   var $h1Element = document.querySelector('h1');
 
   if (event.target && event.target.matches('I')) {
