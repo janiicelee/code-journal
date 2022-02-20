@@ -110,3 +110,13 @@ a {
 .display {
   display: inline-block;
 }
+
+.delete-button {
+  border: none;
+  color: red;
+  text-decoration: underline;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}

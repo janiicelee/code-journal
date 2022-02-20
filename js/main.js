@@ -116,8 +116,6 @@ $entryTab.addEventListener('click', function (event) {
     $entryForm.className = 'entry-form hidden';
     $entries.className = 'entries';
     data.view = 'entries';
-  } else {
-    return 'No entries have been recorded';
   }
 });
 
@@ -167,5 +165,15 @@ ulElement.addEventListener('click', function (event) {
     $entryForm.className = 'view entry-form';
     $h1Element.textContent = 'Edit Entry';
     data.view = 'entry-form';
+  }
+});
+
+var $deleteButton = document.querySelector('.delete-button');
+
+$entries.addEventListener('click', function (event) {
+  if (event.target.matches('I')) {
+    $deleteButton.className = 'delete-button';
+  } else {
+    $deleteButton.className = 'delete-button visibility-hidden';
   }
 });

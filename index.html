@@ -51,16 +51,16 @@
               <textarea rows="5" cols="30" class="notes" name="notes" id="notes" required></textarea>
             </div>
           </div>
-          <div class="row">
-            <div class="column-full right-button">
-              <input class="button" type="submit" value="SAVE">
-            </div>
+          <div class="row space-between">
+            <button class="delete-button visibility-hidden" type="button">Delete Entry</button>
+            <button class="button right-button" type="submit">SAVE</button>
           </div>
       </div>
     </div>
+    </div>
     </form>
   </main>
-  <div class="view entries hidden" data-view="entries">
+  <div id="entries-view" class="view entries hidden" data-view="entries">
     <div class="container">
       <div class="row space-between align-items new-button">
         <h1>Entries</h1>
