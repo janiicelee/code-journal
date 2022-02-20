@@ -177,3 +177,13 @@ $entries.addEventListener('click', function (event) {
     $deleteButton.className = 'delete-button visibility-hidden';
   }
 });
+
+var $modal = document.querySelector('#modal');
+$deleteButton.addEventListener('click', function (event) {
+  $modal.className = 'dark-bg';
+});
+
+var $cancelButton = document.querySelector('#cancel-button');
+$cancelButton.addEventListener('click', function (event) {
+  $modal.className = 'dark-bg hidden';
+});
