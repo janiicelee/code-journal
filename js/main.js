@@ -187,3 +187,29 @@ var $cancelButton = document.querySelector('#cancel-button');
 $cancelButton.addEventListener('click', function (event) {
   $modal.className = 'dark-bg hidden';
 });
+
+var $confirmButton = document.querySelector('#confirm-button');
+$confirmButton.addEventListener('click', function (event) {
+
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryId === data.editing.entryId) {
+      data.entries.splice(i, 1);
+    }
+  }
+
+  var $liElements = document.querySelectorAll('li');
+
+  for (i = 0; i < data.entries.length; i++) {
+    var entryIdNum = JSON.parse($liElements[i].getAttribute('data-entry-id'));
+    if (entryIdNum === data.editing.entryId) {
+      $liElements[i].remove();
+    }
+  }
+
+  data.editing = null;
+  $entryForm.className = 'view entry-form hidden';
+  $entries.className = 'view entries';
+  data.view = 'entries';
+  $modal.className = 'dark-bg hidden';
+
+});
