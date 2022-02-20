@@ -37,13 +37,21 @@ function updateEntry(event) {
     entryObj.entryId = data.editing.entryId;
 
     for (var i = 0; i < data.entries.length; i++) {
-      if (data.entries[i].entryid === entryObj.entryId) {
+      if (data.entries[i].entryId === entryObj.entryId) {
         data.entries[i] = entryObj;
       }
     }
+
+    var $liElements = document.querySelectorAll('li');
+    for (i = 0; i < $liElements.length; i++) {
+      var $liElementId = JSON.parse($liElements[i].getAttribute('data-entry-id'));
+      if ($liElementId === data.editing.entryId) {
+        $liElements[i].replaceWith(createEntryListItem(entryObj));
+      }
+    }
+
     data.editing = null;
     $image.setAttribute('src', 'images/placeholder-image-square.jpg');
-    $liClosest.replaceWith(createEntryListItem(entryObj));
     $form.reset();
   }
   // switches to the list view
@@ -54,14 +62,14 @@ function updateEntry(event) {
 
 $form.addEventListener('submit', updateEntry);
 
-function createEntryListItem(data) {
+function createEntryListItem(entryObj) {
   var liElement = document.createElement('li');
   liElement.setAttribute('class', 'row');
-  liElement.setAttribute('data-entry-id', data.entryId);
+  liElement.setAttribute('data-entry-id', entryObj.entryId);
 
   var imageElement = document.createElement('img');
   imageElement.setAttribute('class', 'column-half');
-  imageElement.setAttribute('src', data.photourl);
+  imageElement.setAttribute('src', entryObj.photourl);
   liElement.appendChild(imageElement);
 
   var divElement = document.createElement('div');
@@ -73,14 +81,14 @@ function createEntryListItem(data) {
   divElement.appendChild(titleDivElement);
 
   var h1Element = document.createElement('h1');
-  h1Element.textContent = data.title;
+  h1Element.textContent = entryObj.title;
 
   var editElement = document.createElement('i');
   editElement.setAttribute('class', 'fa-solid fa-pen edit-icon display align-items');
 
   var pElement = document.createElement('p');
 
-  pElement.textContent = data.notes;
+  pElement.textContent = entryObj.notes;
   titleDivElement.appendChild(h1Element);
   titleDivElement.appendChild(editElement);
   divElement.appendChild(pElement);
@@ -138,15 +146,13 @@ if (data.view === 'entry-form') {
   data.view = 'entries';
 }
 
-var $liClosest = null;
-
 // Listen for clicks on the parent element of all rendered entries
 ulElement.addEventListener('click', function (event) {
 
   var $h1Element = document.querySelector('h1');
 
   if (event.target && event.target.matches('I')) {
-    $liClosest = event.target.closest('li');
+    var $liClosest = event.target.closest('li');
     var $entryId = $liClosest.getAttribute('data-entry-id');
     $entryId = JSON.parse($entryId);
     for (var i = 0; i < data.entries.length; i++) {
