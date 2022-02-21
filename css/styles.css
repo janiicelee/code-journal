@@ -100,3 +100,13 @@ a {
   text-decoration: none;
   color: white;
 }
+
+.edit-icon {
+  color: purple;
+  margin: 4%;
+  padding: 4%;
+}
+
+.display {
+  display: inline-block;
+}
